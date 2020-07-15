@@ -1,0 +1,644 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>天气车机端交互设计（中控）</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="b7c740f5-0713-41eb-97d7-2b5f23112c39" class="page sans"><header><img class="page-cover-image" src="https://openweathermap.org/themes/openweathermap/assets/img/new-history-forecast-bulk.png" style="object-position:center 50%"/><h1 class="page-title">天气车机端交互设计（中控）</h1><table class="properties"><tbody><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>实际角色</th><td>产品经理+交互设计师</td></tr><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>项目时间</th><td><time>@Nov 20, 2019 → Nov 28, 2019</time></td></tr></tbody></table></header><div class="page-body"><figure id="4ae616c2-729a-43e7-b696-bdaaa71657cd" class="image"><a href="Untitled%204ae616c2729a43e7b696bdaaa71657cd.png"><img style="width:1482px" src="Untitled%204ae616c2729a43e7b696bdaaa71657cd.png"/></a><figcaption>完成版本</figcaption></figure><p id="90ee64a1-9d07-49c5-a651-4e87fde3c103" class="">
+</p><p id="4c2440a9-b09b-49c5-bc36-5a06420a3672" class=""><mark class="highlight-orange">背景：在汽车中控设计一个天气服务应用。服务类应用，重点是如何整合信息。</mark></p><p id="b8ed7a90-4dc4-41bf-8195-c14903e0be20" class="">
+</p><h3 id="c1650cac-6d42-4fcf-89bf-3b50e1a50551" class=""><strong>我们什么时候会在汽车上查看天气？（场景）</strong></h3><hr id="76b7e6b5-ae09-49a0-8985-9b292d102500"/><p id="0e0c8050-6510-4aaf-8562-6f852449c4d0" class="">其实人们通常使用手机在尚未出门时查看天气，汽车上查看天气频率很低。驾车远距离游玩时可能关注天气。</p><p id="ea7695aa-e977-4a0d-9aa0-2d4276b94230" class="">
+</p><h3 id="677fc695-bc44-416a-a387-1934678e0da1" class=""><strong>现在手机上的天气应用都是什么样？（竟品分析）</strong></h3><hr id="a8cfcb2f-96dd-4707-a5cc-c64caa3f6979"/><p id="defaa312-bc2f-4497-98a3-f73c1fbc6e6b" class="">有各种各样的数据，对于使用频率低的车机端来说数据太多，需进行取舍。</p><div id="bdc317a3-f6e4-4646-81ef-4134083602f9" class="column-list"><div id="3090a08f-467d-463b-86ee-08944a98f918" style="width:25%" class="column"><figure id="d9698fb0-d7f8-45ee-8efe-a8615fe2df04" class="image"><a href="Untitled%204ae616c2729a43e7b696bdaaa71657cd/Untitled.png"><img style="width:144px" src="Untitled%204ae616c2729a43e7b696bdaaa71657cd/Untitled.png"/></a></figure><figure id="bc99b31d-848d-4122-b011-49c0dfe87a17" class="image"><a href="Untitled%204ae616c2729a43e7b696bdaaa71657cd/Untitled%201.png"><img style="width:144px" src="Untitled%204ae616c2729a43e7b696bdaaa71657cd/Untitled%201.png"/></a><figcaption>墨迹天气</figcaption></figure><p id="bbf618bd-6881-4a1f-a4d4-9e5e0f4aaebc" class="">
+</p></div><div id="a515077f-2c5c-4da9-a870-18daf8313800" style="width:25%" class="column"><figure id="ccc18df0-8e20-4219-a4b6-4aebc479e7fe" class="image"><a href="Untitled%204ae616c2729a43e7b696bdaaa71657cd/Untitled%202.png"><img style="width:144px" src="Untitled%204ae616c2729a43e7b696bdaaa71657cd/Untitled%202.png"/></a></figure><figure id="2f64d465-e88a-4f37-812d-c3c577baf4f8" class="image"><a href="Untitled%204ae616c2729a43e7b696bdaaa71657cd/Untitled%203.png"><img style="width:144px" src="Untitled%204ae616c2729a43e7b696bdaaa71657cd/Untitled%203.png"/></a><figcaption>彩云天气</figcaption></figure><p id="e1b917c1-5a86-41c8-a772-296b45cbb6ef" class="">
+</p></div><div id="a7a156c8-c8b0-49f3-ad88-f7ef45d4a86f" style="width:50%" class="column"><figure id="c16c8997-fd35-4ee3-b4bc-08636f723a11" class="image"><a href="Untitled%204ae616c2729a43e7b696bdaaa71657cd/Untitled%204.png"><img style="width:144px" src="Untitled%204ae616c2729a43e7b696bdaaa71657cd/Untitled%204.png"/></a></figure><figure id="215f2511-7580-4406-870d-b8b4bf6cc4ad" class="image"><a href="Untitled%204ae616c2729a43e7b696bdaaa71657cd/Untitled%205.png"><img style="width:144px" src="Untitled%204ae616c2729a43e7b696bdaaa71657cd/Untitled%205.png"/></a><figcaption>中国天气</figcaption></figure><p id="db4d7c5a-e050-405f-aa75-5a3d6edd83f9" class="">
+</p></div></div><h3 id="e675116a-274b-4a6d-8a98-9f78b7c8a89d" class=""><strong>我们能获取什么样的数据？（API文档阅读）</strong></h3><hr id="740ab77b-d2f1-4887-9508-282134ad2435"/><p id="d09167f2-0f6c-45a3-89a1-23019c4a4dc9" class="">逐小时预报，7天预报，天气预警，20+种生活指数</p><p id="b9dd0ecb-0876-4170-9800-953043fcd00c" class="">
+</p><h3 id="c53e7398-a53f-4c87-ba6d-12accc91d6ac" class=""><strong>平时大家都会关注哪些天气数据？</strong></h3><hr id="2ba18611-00db-4303-bf57-07324d497534"/><p id="3513cbff-51e0-4873-86a8-a4839235451c" class="">多关注15天预报气温气象。较少关注生活指数。</p><p id="e22e936e-6ed5-4887-b69d-eda2c205c4e9" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="d668d8b4-3944-42c1-9696-20664ca9721e"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">设计原则：在一个界面中呈现绝大部分信息，避免过多的层级和跳转。</div></figure><p id="d443d758-3c02-42be-8386-bf8f4200ef2e" class="">
+</p><div id="a8402f63-e3f9-4304-9e2e-b07d6f963460" class="column-list"><div id="904a613d-7408-4ed0-baf4-4fde44139a23" style="width:33.333333333333336%" class="column"><figure id="c1348c94-fffe-4138-abff-e7ee1f812e30" class="image"><a href="Untitled%204ae616c2729a43e7b696bdaaa71657cd/3.png"><img style="width:240px" src="Untitled%204ae616c2729a43e7b696bdaaa71657cd/3.png"/></a><figcaption>天气默认界面</figcaption></figure></div><div id="c8f740f4-b98a-4b00-883e-40181e2d5363" style="width:33.33333333333333%" class="column"><figure id="77a8df42-040a-49fa-bd2e-baa69a97a56a" class="image"><a href="Untitled%204ae616c2729a43e7b696bdaaa71657cd/2.png"><img style="width:377px" src="Untitled%204ae616c2729a43e7b696bdaaa71657cd/2.png"/></a><figcaption>目的地天气</figcaption></figure><p id="6ed5509c-6442-4f82-8301-a361f7c8ec57" class="">
+</p><p id="2889aa12-8bfc-4914-8331-947be018a7ea" class="">
+</p><p id="f98a553e-3167-48dc-bf6e-268466d0bf12" class="">
+</p><figure id="9ce148f1-717a-4d4a-b48e-cdb8b5de6f0f" class="image"><a href="Untitled%204ae616c2729a43e7b696bdaaa71657cd%201.png"><img style="width:377px" src="Untitled%204ae616c2729a43e7b696bdaaa71657cd%201.png"/></a><figcaption>生活指数</figcaption></figure><p id="5f4303b0-4544-4d55-b025-6a9706e8c504" class="">
+</p><p id="69d86a25-397f-4473-8c5b-25753f109c42" class="">
+</p></div><div id="91565fc1-5f41-48bb-a3ae-892b1db7691b" style="width:33.333333333333336%" class="column"><p id="c08877b4-59d8-487a-9353-ff2c1a8521f4" class="">抓取车机内置的地图应用导航信息。</p><p id="c8befbbf-f61c-41f3-8e88-ac96d4ac11e9" class="">目的：想给天气服务增加不一样的价值。车机服务应用数据共享，制造一种贴心的感觉（提前告诉你可能感兴趣的内容）。</p><p id="6ba41466-06b6-4ab8-af96-ef3fc04a19c3" class="">
+</p><p id="df02d4c8-7cff-434e-b1cd-83c44c3a3f31" class="">
+</p><p id="74cd2cdc-3342-4845-87a7-d7b1f3f13bb9" class="">生活指数其实关注的人更少。精简指数类型（26➡️6），增加趣味游戏化的设计。点击随机切换指数。</p></div></div><p id="372f9bef-3a76-430d-9f79-95d77935f356" class="">
+</p><p id="f621c77a-debc-41d4-9abe-7be9b820bc0f" class="">
+</p><p id="032a3dbe-0dac-47f5-ba01-c62c2b52f4f4" class="">
+</p><p id="c4a082ba-eb58-4303-80f7-d7facbd7e2c7" class="">
+</p><p id="50f66412-1279-46b9-b960-5f924965f0a0" class="">
+</p><p id="d2cda0bf-81da-440a-9809-d0405c0d64c8" class="">
+</p></div></article></body></html>

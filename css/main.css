@@ -1833,7 +1833,7 @@
 		}
 
 			header.major > :first-child:after {
-				content: '';
+				/*content: '';下划线设计*/
 				background-color: #39393B;
 				display: block;
 				height: 2px;
@@ -2824,7 +2824,7 @@
 			}
 
 			.tiles article:after {
-				background-color: rgba(43, 46, 107, 0.25);
+				/*background-color: rgba(43, 46, 107, 0.25);*/
 				content: '';
 				display: block;
 				height: 100%;
@@ -2856,7 +2856,8 @@
 			}
 
 			.tiles article:nth-child(6n - 5):before {
-				background-color: #BFBDA9;
+				background-color: #F8F5F0;
+			/* #BFBDA9*/
 			}
 
 			.tiles article:nth-child(6n - 4):before {
@@ -2868,11 +2869,13 @@
 			}
 
 			.tiles article:nth-child(6n - 2):before {
-				background-color: #839ECD;
+				background-color: #F8F5F0;
+				/*#839ECD;*/
 			}
 
 			.tiles article:nth-child(6n - 1):before {
-				background-color: #838095;
+				background-color: #F8F5F0;
+				/*#838095;*/
 			}
 
 			.tiles article:nth-child(6n):before {

@@ -17,13 +17,14 @@
       
       <guid>https://jiansu-huang.github.io/blogs/blog01/</guid>
       <description>诗忆峥嵘岁月-毛诗互动展览
- 项目时间：2020.05.24-06.26 负责部分：共4名成员。我负责其中3首诗词（《忆秦娥·娄山关》《浪淘沙·北戴河》《卜算子·咏梅》）的初步方案设计；展览设计说明撰写；每首诗词Flow Chart梳理；念诗台UI设计。  背景  交互设计Studio课程主题（红色文化主题互动展览），经小组讨论后决定围绕毛泽东诗词进行创作。
+  项目时间：2020.05.24-06.26
+  负责部分：共4名成员。我负责其中3首诗词（《忆秦娥·娄山关》《浪淘沙·北戴河》《卜算子·咏梅》）的初步方案设计；展览设计说明撰写；每首诗词Flow Chart梳理；念诗台UI设计。
+（温馨提示：图片浏览可能需要打开VPN全局模式。）    背景  交互设计Studio课程主题（红色文化主题互动展览），经小组讨论后决定围绕毛泽东诗词进行创作。
 过程和内容 设计框架  Chen, T., &amp;amp; Lu, K. (2012). Creating Spatial-Interactive Service Experiences: A Framework for Designing Interactive Service Spaces  案例研究  No.1
 Es Devlin, 2017, The singing tree at The Victoria &amp;amp; Albert Museum | Photo © Victoria and Albert Museum, London  《The Singing Tree》 一个能与观众互动的圣诞树。在圣诞节期间，前往V&amp;amp;A参观的游客，都会被邀请到装置前写下一个最符合自己的词语，最后通过技术的处理，所有词汇组成一首会播放的音乐，在电脑合成下随同旋律播放出来。
 Key Words：计算机生成；投影；多人参与
 启发：多人参与并且门槛较低，通过计算机参与，最终可生产完成度高的音乐作品。且观众写下的词语成为圣诞树投影的一部分。
-The Singing Tree Flow  No.2
-Sisyu + teamLab, 2018, Born From the Darkness a Loving, and Beautiful World | Photo © teamLab</description>
+The Singing Tree Flow  No.</description>
     </item>
     
     <item>
@@ -33,13 +34,14 @@ Sisyu + teamLab, 2018, Born From the Darkness a Loving, and Beautiful World | Ph
       
       <guid>https://jiansu-huang.github.io/blogs/blog02/</guid>
       <description>天气车机端交互设计（中控）
- 项目时间：2019.11.20-11.28 项目角色：产品经理&amp;amp;交互设计师  背景：在汽车中控设计一个天气服务应用。服务类应用，重点是如何整合信息。  我们什么时候会在汽车上查看天气？（场景）  其实人们通常使用手机在尚未出门时查看天气，汽车上查看天气频率很低。驾车远距离游玩时可能关注天气。
+  项目时间：2019.11.20-11.28
+  项目角色：产品经理&amp;amp;交互设计师
+ （温馨提示：图片浏览可能需要打开VPN全局模式。）    背景：在汽车中控设计一个天气服务应用。服务类应用，重点是如何整合信息。  我们什么时候会在汽车上查看天气？（场景）  其实人们通常使用手机在尚未出门时查看天气，汽车上查看天气频率很低。驾车远距离游玩时可能关注天气。
 现在手机上的天气应用都是什么样？（竟品分析）  有各种各样的数据，对于使用频率低的车机端来说数据太多，需进行取舍。
 我们能获取什么样的数据？（API文档阅读）  逐小时预报，7天预报，天气预警，20+种生活指数
 平时大家都会关注哪些天气数据？  多关注15天预报气温气象。较少关注生活指数。
  设计原则 ：在一个界面中呈现绝大部分信息，避免过多的层级和跳转。 因为汽车中操作中控会分散注意力。  抓取车机内置的地图应用导航信息。目的：想给天气服务增加不一样的价值。车机服务应用数据共享，制造一种贴心的感觉（提前告诉你可能感兴趣的内容）。
-生活指数其实关注的人更少。精简指数类型（26➡️6），增加趣味游戏化的设计。点击随机切换指数。
-（温馨提示：图片浏览可能需要打开VPN全局模式。）</description>
+生活指数其实关注的人更少。精简指数类型（26➡️6），增加趣味游戏化的设计。点击随机切换指数。</description>
     </item>
     
     <item>
@@ -49,7 +51,9 @@ Sisyu + teamLab, 2018, Born From the Darkness a Loving, and Beautiful World | Ph
       
       <guid>https://jiansu-huang.github.io/blogs/blog03/</guid>
       <description>Hi贝Phi值详情页交互设计
- 项目时间：2020.02.26-03.02 项目角色：交互设计师  背景：Hi贝Phi值详情页目前是分开的。详情页包括历史记录，作用，规则说明，当前值。 Hi贝≈积分；Phi值≈经验值。  需求和目标：将二者整合在一个页面  总结：  等级，经验值，积分等概念不需要解释。「淘气值」有解释，但比较容易理解。相对而言，Hi贝和Phi值的命名让人不知所云，特别是Phi值。「我的高德币」也没有解释作用，很奇怪。 解释作用通常是用权益icon的形式说明。但是Hi贝和Phi值的权益比较模糊，不太适合这种方式。  解决：想用可视化的方法，说明Hi贝和Phi值的作用和区别。  草稿
+  项目时间：2020.02.26-03.02
+  项目角色：交互设计师
+ （温馨提示：图片浏览可能需要打开VPN全局模式。）    背景：Hi贝Phi值详情页目前是分开的。详情页包括历史记录，作用，规则说明，当前值。 Hi贝≈积分；Phi值≈经验值。  需求和目标：将二者整合在一个页面  总结：  等级，经验值，积分等概念不需要解释。「淘气值」有解释，但比较容易理解。相对而言，Hi贝和Phi值的命名让人不知所云，特别是Phi值。「我的高德币」也没有解释作用，很奇怪。 解释作用通常是用权益icon的形式说明。但是Hi贝和Phi值的权益比较模糊，不太适合这种方式。  解决：想用可视化的方法，说明Hi贝和Phi值的作用和区别。  草稿
  本来计划用拟人化的手法表现（这个其实在亚洲文化中比较合适，不适合于欧美文化的设计），后来考虑之后，决定简化设计。因为也并不是APP中核心的页面，这样会增加开发成本。  第一版的2个方案，右边是保守版本。
 最终版，修改了切换方式。
  规则里面也有说明，但是通常没有人会去看吧。所以想用插画的形式简明的说清楚，最后的效果也有些类似社区的玩法说明。  规则说明</description>
@@ -71,7 +75,7 @@ Sisyu + teamLab, 2018, Born From the Darkness a Loving, and Beautiful World | Ph
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://jiansu-huang.github.io/blogs/blog05/</guid>
-      <description>干杯环球港们！   蓝天下，是谁在看着环球港？   夜晚的环球港总是那么美丽。  （温馨提示：图片浏览可能需要打开VPN全局模式。）</description>
+      <description>（温馨提示：图片浏览可能需要打开VPN全局模式。）   干杯环球港们！   蓝天下，是谁在看着环球港？   夜晚的环球港总是那么美丽。  （温馨提示：图片浏览可能需要打开VPN全局模式。）</description>
     </item>
     
     <item>

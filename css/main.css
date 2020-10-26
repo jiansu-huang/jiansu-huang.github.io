@@ -2902,6 +2902,10 @@
 				
 			}
 
+			.tiles article:nth-child(0n+11):before {
+				background-color: #EB562E;
+			}
+
 			
 
 		@media screen and (max-width: 1280px) {

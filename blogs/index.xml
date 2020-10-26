@@ -54,7 +54,8 @@ Sisyu + teamLab, 2018, Born From the Darkness a Loving, and Beautiful World | Ph
  项目时间：2020.02.26-03.02 项目角色：交互设计师  背景：Hi贝Phi值详情页目前是分开的。详情页包括历史记录，作用，规则说明，当前值。 Hi贝≈积分；Phi值≈经验值。  需求和目标：将二者整合在一个页面  总结：  等级，经验值，积分等概念不需要解释。「淘气值」有解释，但比较容易理解。相对而言，Hi贝和Phi值的命名让人不知所云，特别是Phi值。「我的高德币」也没有解释作用，很奇怪。 解释作用通常是用权益icon的形式说明。但是Hi贝和Phi值的权益比较模糊，不太适合这种方式。  解决：想用可视化的方法，说明Hi贝和Phi值的作用和区别。  草稿
  本来计划用拟人化的手法表现（这个其实在亚洲文化中比较合适，不适合于欧美文化的设计），后来考虑之后，决定简化设计。因为也并不是APP中核心的页面，这样会增加开发成本。  第一版的2个方案，右边是保守版本。
 最终版，修改了切换方式。
- 规则里面也有说明，但是通常没有人会去看吧。所以想用插画的形式简明的说清楚，最后的效果也有些类似社区的玩法说明。  规则说明</description>
+ 规则里面也有说明，但是通常没有人会去看吧。所以想用插画的形式简明的说清楚，最后的效果也有些类似社区的玩法说明。  规则说明
+视觉设计（后面我自己做了视觉再设计）</description>
     </item>
     
     <item>
@@ -73,7 +74,16 @@ Sisyu + teamLab, 2018, Born From the Darkness a Loving, and Beautiful World | Ph
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://jiansu-huang.github.io/blogs/blog05/</guid>
-      <description> 干杯环球港们！   蓝天下，是谁在看着环球港？   夜晚的环球港总是那么美丽。  </description>
+      <description> 干杯环球港们！   蓝天下，是谁在看着环球港？   夜晚的环球港总是那么美丽。   扭动着的环球港。  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://jiansu-huang.github.io/blogs/blog06/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jiansu-huang.github.io/blogs/blog06/</guid>
+      <description></description>
     </item>
     
     <item>
